@@ -1,2 +1,2 @@
 ## Ket qua 
-![alt](login.jpg)
+![alt](thongbao.jpg)
