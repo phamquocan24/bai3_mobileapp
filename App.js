@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, Text, StyleSheet } from 'react-native';
+import NotificationList from './NotificationList';
 
 const notifications = [
   {
@@ -47,35 +47,12 @@ const notifications = [
   },
 ];
 
-const NotificationItem = ({ title, description, date, icon, isHighlighted }) => (
-  <View style={[styles.notificationContainer, isHighlighted && styles.highlight]}>
-    <Icon name={icon} size={40} color="#344796" style={styles.icon} />
-    <View style={styles.textContainer}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
-      <Text style={styles.date}>{date}</Text>
-    </View>
-  </View>
-);
-
 const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Thông báo</Text>
       <View style={styles.separator} />
-      <FlatList
-        data={notifications}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <NotificationItem
-            title={item.title}
-            description={item.description}
-            date={item.date}
-            icon={item.icon}
-            isHighlighted={item.id === '1' || item.id === '2' || item.id === '4'}
-          />
-        )}
-      />
+      <NotificationList data={notifications} />
     </View>
   );
 };
@@ -93,39 +70,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   separator: {
-    height: 2, // Chiều cao của thanh ngang
-    borderBottomWidth: 6, // Độ dày của viền
-    borderBottomColor: '#ccc', // Màu xám
-    marginBottom: 0, // Không có khoảng cách dưới
-  },
-  notificationContainer: {
-    flexDirection: 'row',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  highlight: {
-    backgroundColor: '#e0f7fa', // Xanh nhạt
-  },
-  icon: {
-    marginRight: 15,
-  },
-  textContainer: {
-    flex: 1,
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 13,
-    marginBottom: 5,
-  },
-  description: {
-    color: '#555',
-    marginBottom: 5,
-    fontSize: 12,
-  },
-  date: {
-    color: '#999',
-    fontSize: 12,
+    height: 2,
+    borderBottomWidth: 6,
+    borderBottomColor: '#ccc',
+    marginBottom: 0,
   },
 });
 
